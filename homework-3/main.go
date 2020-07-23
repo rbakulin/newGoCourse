@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/rbakulin/newGoCourse/homework-3/queue"
-	"github.com/rbakulin/bewGoCourse/homework-3/vehicle"
+	"github.com/rbakulin/newGoCourse/homework-3/vehicle"
 )
 
 func main() {
