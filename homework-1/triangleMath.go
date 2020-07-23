@@ -6,11 +6,19 @@ import (
 	"strconv"
 )
 
-func calcTriangleParams(cathetus1 float64, cathetus2 float64) (float64, float64, float64){
+func calcHypotenuse(cathetus1 float64, cathetus2 float64) float64 {
 	hypotenuse := math.Sqrt(math.Pow(cathetus1, 2) + math.Pow(cathetus2, 2))
-	perimeter := cathetus1 + cathetus2 + hypotenuse
+	return hypotenuse
+}
+
+func calcSquare(cathetus1 float64, cathetus2 float64) float64 {
 	square := cathetus1 * cathetus2 / 2
-	return hypotenuse, perimeter, square
+	return square
+}
+
+func calcPerimeter(cathetus1 float64, cathetus2 float64, hypotenuse float64) float64 {
+	perimeter := cathetus1 + cathetus2 + hypotenuse
+	return perimeter
 }
 
 func checkErr(err error){
@@ -21,8 +29,7 @@ func checkErr(err error){
 }
 
 func main()  {
-	var cathetus1Str string
-	var cathetus2Str string
+	var cathetus1Str, cathetus2Str string
 
 	fmt.Println("Введите катет 1")
 	_, scanErr := fmt.Scanln(&cathetus1Str)
@@ -36,6 +43,8 @@ func main()  {
 	cathetus2Int, parseErr := strconv.ParseFloat(cathetus2Str, 64)
 	checkErr(parseErr)
 
-	hypotenuse, perimeter, square := calcTriangleParams(cathetus1Int, cathetus2Int)
-	fmt.Printf("Гипотенуза: %g, Периметр: %g, Площадь: %g", hypotenuse, perimeter, square)
+	hypotenuse := calcHypotenuse(cathetus1Int, cathetus2Int)
+	square := calcSquare(cathetus1Int, cathetus2Int)
+	perimeter := calcPerimeter(cathetus1Int, cathetus2Int, hypotenuse)
+	fmt.Printf("Гипотенуза: %g, Площадь: %g, Периметр: %g", hypotenuse, perimeter, square)
 }

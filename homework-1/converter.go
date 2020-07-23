@@ -6,7 +6,7 @@ import (
 
 const exchangeRate = 70
 
-func convertToDollars(rubles int) int{
+func convertToDollars(rubles int) int {
 	return rubles * exchangeRate
 }
 
