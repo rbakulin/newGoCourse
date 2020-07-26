@@ -36,12 +36,13 @@ func main() {
 		BodyVolume: 50,
 		BodyLoad: 45,
 	}
-	queue.Enqueue(toyota)
-	queue.Enqueue(bmw)
-	queue.Enqueue(mercedes)
-	dequeuedVehicle := queue.Dequeue()
+	vehicleQueue := queue.VehicleQueue{}
+	vehicleQueue.Enqueue(toyota)
+	vehicleQueue.Enqueue(bmw)
+	vehicleQueue.Enqueue(mercedes)
+	dequeuedVehicle := vehicleQueue.Dequeue()
 	for dequeuedVehicle != nil {
 		dequeuedVehicle.Print()
-		dequeuedVehicle = queue.Dequeue()
+		dequeuedVehicle = vehicleQueue.Dequeue()
 	}
 }

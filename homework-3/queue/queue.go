@@ -6,20 +6,24 @@ type LoadablePrintable interface {
 }
 
 type VehicleQueue struct {
-	Store []LoadablePrintable
+	store []LoadablePrintable
 }
 
 func (q *VehicleQueue) Enqueue(vehicle LoadablePrintable) {
-	_ = append(q.Store, vehicle)
+	q.store = append(q.store, vehicle)
 }
 
 
 func (q *VehicleQueue) Dequeue() LoadablePrintable {
-	if len(q.Store) == 0 {
+	if len(q.store) == 0 {
 		return nil
 	}
 
-	itemToDequeue := q.Store[0]
-	q.Store = q.Store[1:]
+	itemToDequeue := q.store[0]
+	q.store = q.store[1:]
 	return itemToDequeue
+}
+
+func (q *VehicleQueue) GetQueueLength() int {
+	return len(q.store)
 }
