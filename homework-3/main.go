@@ -40,8 +40,9 @@ func main() {
 	queue.Enqueue(toyota)
 	queue.Enqueue(bmw)
 	queue.Enqueue(mercedes)
-	queue.Dequeue()
-	queue.Dequeue()
-	queue.Dequeue()
-	queue.Dequeue()
+	dequeuedVehicle := queue.Dequeue()
+	for dequeuedVehicle != nil {
+		dequeuedVehicle.Print()
+		dequeuedVehicle = queue.Dequeue()
+	}
 }

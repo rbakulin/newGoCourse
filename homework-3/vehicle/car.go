@@ -9,11 +9,11 @@ type PassengerCar struct {
 	TrunkLoad float64
 }
 
-func (c PassengerCar) Fullness() float64 {
+func (c *PassengerCar) Fullness() float64 {
 	return (c.TrunkLoad) / (c.TrunkVolume) * 100
 }
 
-func (c PassengerCar) Print() {
+func (c *PassengerCar) Print() {
 	fmt.Printf(
 		"Model: %s\nYear: %d\nEngine is on: %t\nWindows are open: %t\nFullness: %g\n-------------\n",
 		c.Brand, c.Year, c.IsEngineOn, c.AreWindowsOpen, c.Fullness())

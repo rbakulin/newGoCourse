@@ -1,23 +1,25 @@
 package queue
 
-type LoadablePrintable interface {
+type loadablePrintable interface {
 	Fullness() float64
 	Print()
 }
 
-var queueArray []LoadablePrintable
-
-func Enqueue(vehicle LoadablePrintable) {
-	queueArray = append(queueArray, vehicle)
+type vehicleQueue struct {
+	Store []loadablePrintable
 }
 
-func Dequeue() LoadablePrintable {
-	if len(queueArray) == 0 {
+func (q *vehicleQueue) Enqueue(vehicle loadablePrintable) {
+	_ = append(q.Store, vehicle)
+}
+
+
+func (q *vehicleQueue) Dequeue() loadablePrintable {
+	if len(q.Store) == 0 {
 		return nil
 	}
 
-	itemToDequeue := queueArray[0]
-	queueArray = queueArray[1:]
-	itemToDequeue.Print()
+	itemToDequeue := q.Store[0]
+	q.Store = q.Store[1:]
 	return itemToDequeue
 }
