@@ -36,7 +36,6 @@ func main() {
 		BodyVolume: 50,
 		BodyLoad: 45,
 	}
-
 	queue.Enqueue(toyota)
 	queue.Enqueue(bmw)
 	queue.Enqueue(mercedes)
