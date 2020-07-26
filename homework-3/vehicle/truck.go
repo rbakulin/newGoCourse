@@ -9,11 +9,12 @@ type Truck struct {
 	BodyLoad float64
 }
 
-func (t *Truck) Fullness() float64 {
+// Methods don't change instance so pass value not index
+func (t Truck) Fullness() float64 {
 	return t.BodyLoad / t.BodyLoad * 100
 }
 
-func (t *Truck) Print() {
+func (t Truck) Print() {
 	fmt.Printf(
 		"Model: %s\nYear: %d\nEngine is on: %t\nWindows are open: %t\nFullness: %g\n-------------\n",
 		t.Brand, t.Year, t.IsEngineOn, t.AreWindowsOpen, t.Fullness())
