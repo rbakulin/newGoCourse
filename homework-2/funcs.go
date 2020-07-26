@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func isEven(number int) bool{
@@ -28,24 +27,23 @@ func fibonacciNumbers()  {
 }
 
 func main()  {
-	var numberStr string
+	var num int
 	fmt.Println("Введите число")
-	fmt.Scanln(&numberStr)
-	numberInt, err := strconv.Atoi(numberStr)
+	_, err := fmt.Scanln(&num)
 	if err != nil {
 		fmt.Printf("%v\n", err)
 		return
 	}
 
-	if isEven(numberInt) {
-		fmt.Printf("Число %s является четным\n", numberStr)
+	if isEven(num) {
+		fmt.Printf("Число %d является четным\n", num)
 	} else {
-		fmt.Printf("Число %s не является четным\n", numberStr)
+		fmt.Printf("Число %d не является четным\n", num)
 	}
-	if noLeftByThree(numberInt) {
-		fmt.Printf("Число %s делится на 3 без отсатка\n", numberStr)
+	if noLeftByThree(num) {
+		fmt.Printf("Число %d делится на 3 без отсатка\n", num)
 	} else {
-		fmt.Printf("Число %s не делится на 3 без отсатка\n", numberStr)
+		fmt.Printf("Число %d не делится на 3 без отсатка\n", num)
 	}
 
 	fibonacciNumbers()
