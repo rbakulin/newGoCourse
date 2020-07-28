@@ -2,7 +2,9 @@ package main
 
 import (
 	"./character"
+	"./contact"
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -40,4 +42,26 @@ func main() {
 	fmt.Printf("%s attacks %s: damage is %f\n", witcher.GetName(), knight.GetName(), witcherAttacksKnight)
 	assassinAttacksWithcer := character.Attack(assassin, witcher)
 	fmt.Printf("%s attacks %s: damage is %f\n", assassin.GetName(), witcher.GetName(), assassinAttacksWithcer)
+
+	phoneBook := contact.PhoneBook {
+		&contact.Contact {
+			Name: "Zack",
+			Phone: "39999999999",
+			Email: "zack@gmail.com",
+		},
+		&contact.Contact {
+			Name: "Karen",
+			Phone: "27777777777",
+			Email: "karen@gmail.com",
+		},
+		&contact.Contact {
+			Name: "Aaron",
+			Phone: "18888888888",
+			Email: "aaron@gmail.com",
+		},
+	}
+	sort.Sort(phoneBook)
+	for _, cont := range phoneBook {
+		fmt.Println(cont.Name)
+	}
 }
