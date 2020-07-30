@@ -1,8 +1,10 @@
 package main
 
 import (
-	"./character"
-	"./contact"
+	"github.com/rbakulin/newGoCourse/homework-4/character"
+	"github.com/rbakulin/newGoCourse/homework-4/contact"
+)
+import (
 	"fmt"
 	"sort"
 	"strings"
