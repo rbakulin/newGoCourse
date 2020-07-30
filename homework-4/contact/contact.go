@@ -16,6 +16,7 @@ func (b PhoneBook) Swap(i, j int) {
 	b[i], b[j] = b[j], b[i]
 }
 
+// sorts contacts by Name field
 func (b PhoneBook) Less(i, j int) bool {
 	return b[i].Name < b[j].Name
 }

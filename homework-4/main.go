@@ -5,44 +5,11 @@ import (
 	"./contact"
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func main() {
-	knight := character.Warrior {
-		Character: character.Character {
-			Name: "Arthur",
-			Strength: 9,
-			Agility: 3,
-			Magic: 0,
-			Defence: 10,
-		},
-		SwordSkill: 9,
-	}
-	assassin := character.Robber {
-		Character: character.Character {
-			Name: "Altair",
-			Strength: 3,
-			Agility: 10,
-			Magic: 0,
-			Defence: 4,
-		},
-		ArcherySkill: 6,
-	}
-	witcher := character.Magician {
-		Character: character.Character {
-			Name: "Geralt",
-			Strength: 3,
-			Agility: 10,
-			Magic: 0,
-			Defence: 7,
-		},
-		SpellSkill: 4,
-	}
-	witcherAttacksKnight := character.Attack(witcher, knight)
-	fmt.Printf("%s attacks %s: damage is %f\n", witcher.GetName(), knight.GetName(), witcherAttacksKnight)
-	assassinAttacksWithcer := character.Attack(assassin, witcher)
-	fmt.Printf("%s attacks %s: damage is %f\n", assassin.GetName(), witcher.GetName(), assassinAttacksWithcer)
-
+	// Phone Book
 	phoneBook := contact.PhoneBook {
 		&contact.Contact {
 			Name: "Zack",
@@ -61,7 +28,68 @@ func main() {
 		},
 	}
 	sort.Sort(phoneBook)
-	for _, cont := range phoneBook {
-		fmt.Println(cont.Name)
+
+	// Characters
+	knight := character.NewWarrior("Arthur", 9, 3, 0, 10, 9)
+	assassin := character.NewRobber("Altair", 3, 10, 0, 4, 6)
+	witcher := character.NewMagician("Geralt", 7, 7, 3, 5, 4)
+	chars := character.Characters{
+		knight,
+		assassin,
+		witcher,
+	}
+
+	input := ""
+	for {
+		fmt.Println("There are characters:")
+		for _, char := range chars {
+			fmt.Println(char.GetName())
+		}
+		fmt.Println("Type character names to make them fight!")
+		fmt.Println("Input character1 name:")
+		fmt.Print("> ")
+		if _, err := fmt.Scanln(&input); err != nil {
+			fmt.Println(err)
+			continue
+		}
+		if input == "exit" {
+			break
+		}
+		if input == "help" {
+			for _, char := range chars {
+				fmt.Printf("Character %s:\nclass: %s\nattack: %f\ndefence: %f\n--------------\n",
+					char.GetName(), char.GetClassName(), char.CalcAttackPower(), char.GetDefence())
+			}
+		}
+		var char1, char2 character.Player
+		for _, char := range chars {
+			if strings.ToLower(char.GetName()) == strings.ToLower(input) {
+				char1 = char
+			}
+		}
+		if char1 == nil {
+			fmt.Printf("No such character: %s\n", input)
+			continue
+		}
+
+		input = ""
+		fmt.Println("Input character2 name:")
+		fmt.Print("> ")
+		if _, err := fmt.Scanln(&input); err != nil {
+			fmt.Println(err)
+			continue
+		}
+		for _, char := range chars {
+			if strings.ToLower(char.GetName()) == strings.ToLower(input) {
+				char2 = char
+			}
+		}
+		if char2 == nil {
+			fmt.Printf("No such character: %s\n", input)
+			continue
+		}
+		damage := character.Attack(char1, char2)
+		fmt.Printf("%s attacks %s: damage is %f\n", char1.GetName(), char2.GetName(), damage)
+		break
 	}
 }
