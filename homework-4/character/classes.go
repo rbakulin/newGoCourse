@@ -14,15 +14,18 @@ const (
 
 // Use constructor to set default class name
 func NewWarrior(name string, strength, agility, magic, defence, swordSkill float64) *Warrior {
-	w := new(Warrior)
-	w.Name = name
-	w.Strength = strength
-	w.Agility = agility
-	w.Magic = magic
-	w.Defence = defence
-	w.SwordSkill = swordSkill
-	w.className = warriorClassName
-	return w
+	w := Warrior {
+		Character: Character {
+			Name: name,
+			Strength: strength,
+			Agility: agility,
+			Magic: magic,
+			Defence: defence,
+		},
+		SwordSkill: swordSkill,
+		className: warriorClassName,
+	}
+	return &w
 }
 
 func (w Warrior) CalcAttackPower() float64 {
@@ -40,15 +43,18 @@ type Robber struct {
 }
 
 func NewRobber(name string, strength, agility, magic, defence, archerySkill float64) *Robber {
-	r := new(Robber)
-	r.Name = name
-	r.Strength = strength
-	r.Agility = agility
-	r.Magic = magic
-	r.Defence = defence
-	r.ArcherySkill = archerySkill
-	r.className = robberClassName
-	return r
+	r := Robber {
+		Character: Character {
+			Name: name,
+			Strength: strength,
+			Agility: agility,
+			Magic: magic,
+			Defence: defence,
+		},
+		ArcherySkill: archerySkill,
+		className: robberClassName,
+	}
+	return &r
 }
 
 func (r Robber) CalcAttackPower() float64 {
@@ -66,15 +72,18 @@ type Magician struct {
 }
 
 func NewMagician(name string, strength, agility, magic, defence, spellSkill float64) *Magician {
-	m := new(Magician)
-	m.Name = name
-	m.Strength = strength
-	m.Agility = agility
-	m.Magic = magic
-	m.Defence = defence
-	m.SpellSkill = spellSkill
-	m.className = magicianClassName
-	return m
+	m := Magician {
+		Character: Character {
+			Name: name,
+			Strength: strength,
+			Agility: agility,
+			Magic: magic,
+			Defence: defence,
+		},
+		SpellSkill: spellSkill,
+		className: magicianClassName,
+	}
+	return &m
 }
 
 func (m Magician) CalcAttackPower() float64 {

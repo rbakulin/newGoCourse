@@ -10,6 +10,16 @@ import (
 	"strings"
 )
 
+func findChar(name string, chars character.Characters) character.Player {
+	var foundChar character.Player
+	for _, char := range chars {
+		if strings.ToLower(char.GetName()) == strings.ToLower(name) {
+			foundChar = char
+		}
+	}
+	return foundChar
+}
+
 func main() {
 	// Phone Book
 	phoneBook := contact.PhoneBook {
@@ -32,13 +42,10 @@ func main() {
 	sort.Sort(phoneBook)
 
 	// Characters
-	knight := character.NewWarrior("Arthur", 9, 3, 0, 10, 9)
-	assassin := character.NewRobber("Altair", 3, 10, 0, 4, 6)
-	witcher := character.NewMagician("Geralt", 7, 7, 3, 5, 4)
 	chars := character.Characters{
-		knight,
-		assassin,
-		witcher,
+		character.NewWarrior("Arthur", 9, 3, 0, 10, 9),
+		character.NewRobber("Altair", 3, 10, 0, 4, 6),
+		character.NewMagician("Geralt", 7, 7, 3, 5, 4),
 	}
 
 	input := ""
@@ -64,11 +71,7 @@ func main() {
 			}
 		}
 		var char1, char2 character.Player
-		for _, char := range chars {
-			if strings.ToLower(char.GetName()) == strings.ToLower(input) {
-				char1 = char
-			}
-		}
+		char1 = findChar(input, chars)
 		if char1 == nil {
 			fmt.Printf("No such character: %s\n", input)
 			continue
@@ -81,11 +84,7 @@ func main() {
 			fmt.Println(err)
 			continue
 		}
-		for _, char := range chars {
-			if strings.ToLower(char.GetName()) == strings.ToLower(input) {
-				char2 = char
-			}
-		}
+		char2 = findChar(input, chars)
 		if char2 == nil {
 			fmt.Printf("No such character: %s\n", input)
 			continue
